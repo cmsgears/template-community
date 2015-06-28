@@ -1,0 +1,99 @@
+{
+	"name": "cmsgears/template-community",
+	"description": "The community template for community module having default theme set to community.",
+	"homepage": "http://www.cmsgears.org", 
+	"type": "project",
+	"keywords": [ "yii2", "cmsgears", "template", "community" ],
+	"license": "GPLv3",
+	"support": {
+        "source": "http://www.cmsgears.com/templates/community/downloads",
+		"forum": "http://forum.cmsgears.org/",
+		"resources": "http://resources.cmsgears.org/",
+		"issues": "https://www.amazingdesk.com/cmsgears/issues/",
+		"blog": "http://cmsgears.tutorials24x7.com/"
+	},
+	"minimum-stability": "stable",
+    "repositories": [
+		{
+			"type": "vcs",
+			"url": "https://git.vcdevhub.com/cmsgears/module-core.git"
+		},
+		{
+			"type": "vcs",
+			"url": "https://git.vcdevhub.com/cmsgears/module-forms.git"
+		},
+		{
+			"type": "vcs",
+			"url": "https://git.vcdevhub.com/cmsgears/module-cms.git"
+		},
+		{
+			"type": "vcs",
+			"url": "https://git.vcdevhub.com/cmsgears/module-community.git"
+		},
+		{
+			"type": "vcs",
+			"url": "https://git.vcdevhub.com/cmsgears/plugin-file-manager.git"
+		},
+		{
+			"type": "vcs",
+			"url": "https://git.vcdevhub.com/cmsgears/widget-cleditor.git"
+		},
+		{
+			"type": "vcs",
+			"url": "https://git.vcdevhub.com/cmsgears/widget-nav.git"
+		},
+		{
+			"type": "vcs",
+			"url": "https://git.vcdevhub.com/cmsgears/widget-login.git"
+		},
+		{
+			"type": "vcs",
+			"url": "https://git.vcdevhub.com/cmsgears/widget-gallery.git"
+		},
+		{
+			"type": "vcs",
+			"url": "https://git.vcdevhub.com/cmsgears/widget-newsletter.git"
+		},
+		{
+			"type": "vcs",
+			"url": "https://git.vcdevhub.com/cmsgears/widget-tag.git"
+		},
+		{
+			"type": "vcs",
+			"url": "https://git.vcdevhub.com/cmsgears/widget-social-share.git"
+		},
+		{
+			"type": "vcs",
+			"url": "https://git.vcdevhub.com/cmsgears/widget-blog.git"
+		}
+    ],
+    "require": {
+        "yiisoft/yii2": "2.0.3",
+        "yiisoft/yii2-swiftmailer": "2.0.3",
+		"cmsgears/module-core": "dev-dev",
+		"cmsgears/module-forms": "dev-dev",
+		"cmsgears/module-cms": "dev-dev",
+		"cmsgears/module-community": "dev-dev",
+		"cmsgears/plugin-file-manager": "dev-dev",
+		"cmsgears/widget-cleditor": "dev-dev",
+		"cmsgears/widget-nav": "dev-dev",
+		"cmsgears/widget-login": "dev-dev",
+		"cmsgears/widget-gallery": "dev-dev",
+		"cmsgears/widget-newsletter": "dev-dev",
+		"cmsgears/widget-tag": "dev-dev",
+		"cmsgears/widget-social-share": "dev-dev",
+		"cmsgears/widget-blog": "dev-dev"
+    },
+    "require-dev": {
+        "yiisoft/yii2-codeception": "*",
+        "yiisoft/yii2-debug": "*",
+        "yiisoft/yii2-gii": "*",
+        "yiisoft/yii2-faker": "*"
+    },
+    "extra": {
+        "asset-installer-paths": {
+            "npm-asset-library": "vendor/npm",
+            "bower-asset-library": "vendor/bower"
+        }
+    }
+}
