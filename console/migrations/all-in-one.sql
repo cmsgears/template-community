@@ -57,10 +57,10 @@ CREATE TABLE `cmg_cmn_chat_member` (
   `modifiedAt` datetime DEFAULT NULL,
   `syncedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_cmn_chat_member_1` (`chatId`),
-  KEY `fk_cmn_chat_member_2` (`userId`),
-  CONSTRAINT `fk_cmn_chat_member_1` FOREIGN KEY (`chatId`) REFERENCES `cmg_cmn_chat` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `fk_cmn_chat_member_2` FOREIGN KEY (`userId`) REFERENCES `cmg_core_user` (`id`) ON DELETE CASCADE
+  KEY `fk_cmg_cmn_chat_member_1` (`chatId`),
+  KEY `fk_cmg_cmn_chat_member_2` (`userId`),
+  CONSTRAINT `fk_cmg_cmn_chat_member_1` FOREIGN KEY (`chatId`) REFERENCES `cmg_cmn_chat` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_cmg_cmn_chat_member_2` FOREIGN KEY (`userId`) REFERENCES `cmg_core_user` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -85,10 +85,10 @@ CREATE TABLE `cmg_cmn_chat_message` (
   `chatId` bigint(20) NOT NULL,
   `messageId` bigint(20) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_cmn_chat_message_1` (`chatId`),
-  KEY `fk_cmn_chat_message_2` (`messageId`),
-  CONSTRAINT `fk_cmn_chat_message_1` FOREIGN KEY (`chatId`) REFERENCES `cmg_cmn_chat` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `fk_cmn_chat_message_2` FOREIGN KEY (`messageId`) REFERENCES `cmg_cmn_chat_message` (`id`) ON DELETE CASCADE
+  KEY `fk_cmg_cmn_chat_message_1` (`chatId`),
+  KEY `fk_cmg_cmn_chat_message_2` (`messageId`),
+  CONSTRAINT `fk_cmg_cmn_chat_message_1` FOREIGN KEY (`chatId`) REFERENCES `cmg_cmn_chat` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_cmg_cmn_chat_message_2` FOREIGN KEY (`messageId`) REFERENCES `cmg_cmn_chat_message` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -116,10 +116,10 @@ CREATE TABLE `cmg_cmn_friend` (
   `modifiedAt` datetime DEFAULT NULL,
   `status` smallint(6) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
-  KEY `fk_cmn_friend_1` (`userId`),
-  KEY `fk_cmn_friend_2` (`friendId`),
-  CONSTRAINT `fk_cmn_friend_1` FOREIGN KEY (`userId`) REFERENCES `cmg_core_user` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `fk_cmn_friend_2` FOREIGN KEY (`friendId`) REFERENCES `cmg_core_user` (`id`) ON DELETE CASCADE
+  KEY `fk_cmg_cmn_friend_1` (`userId`),
+  KEY `fk_cmg_cmn_friend_2` (`friendId`),
+  CONSTRAINT `fk_cmg_cmn_friend_1` FOREIGN KEY (`userId`) REFERENCES `cmg_core_user` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_cmg_cmn_friend_2` FOREIGN KEY (`friendId`) REFERENCES `cmg_core_user` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -149,12 +149,12 @@ CREATE TABLE `cmg_cmn_group` (
   `status` smallint(6) DEFAULT '0',
   `visibility` smallint(6) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_cmn_group_1` (`avatarId`),
-  KEY `fk_cmn_group_2` (`createdBy`),
-  KEY `fk_cmn_group_3` (`modifiedBy`),
-  CONSTRAINT `fk_cmn_group_1` FOREIGN KEY (`avatarId`) REFERENCES `cmg_core_file` (`id`),
-  CONSTRAINT `fk_cmn_group_2` FOREIGN KEY (`createdBy`) REFERENCES `cmg_core_user` (`id`),
-  CONSTRAINT `fk_cmn_group_3` FOREIGN KEY (`modifiedBy`) REFERENCES `cmg_core_user` (`id`)
+  KEY `fk_cmg_cmn_group_1` (`avatarId`),
+  KEY `fk_cmg_cmn_group_2` (`createdBy`),
+  KEY `fk_cmg_cmn_group_3` (`modifiedBy`),
+  CONSTRAINT `fk_cmg_cmn_group_1` FOREIGN KEY (`avatarId`) REFERENCES `cmg_core_file` (`id`),
+  CONSTRAINT `fk_cmg_cmn_group_2` FOREIGN KEY (`createdBy`) REFERENCES `cmg_core_user` (`id`),
+  CONSTRAINT `fk_cmg_cmn_group_3` FOREIGN KEY (`modifiedBy`) REFERENCES `cmg_core_user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -184,12 +184,12 @@ CREATE TABLE `cmg_cmn_group_member` (
   `modifiedAt` datetime DEFAULT NULL,
   `syncedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_cmn_group_member_1` (`groupId`),
-  KEY `fk_cmn_group_member_2` (`userId`),
-  KEY `fk_cmn_group_member_3` (`roleId`),
-  CONSTRAINT `fk_cmn_group_member_1` FOREIGN KEY (`groupId`) REFERENCES `cmg_cmn_group` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `fk_cmn_group_member_2` FOREIGN KEY (`userId`) REFERENCES `cmg_core_user` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `fk_cmn_group_member_3` FOREIGN KEY (`roleId`) REFERENCES `cmg_core_role` (`id`)
+  KEY `fk_cmg_cmn_group_member_1` (`groupId`),
+  KEY `fk_cmg_cmn_group_member_2` (`userId`),
+  KEY `fk_cmg_cmn_group_member_3` (`roleId`),
+  CONSTRAINT `fk_cmg_cmn_group_member_1` FOREIGN KEY (`groupId`) REFERENCES `cmg_cmn_group` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_cmg_cmn_group_member_2` FOREIGN KEY (`userId`) REFERENCES `cmg_core_user` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_cmg_cmn_group_member_3` FOREIGN KEY (`roleId`) REFERENCES `cmg_core_role` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -218,10 +218,10 @@ CREATE TABLE `cmg_cmn_group_message` (
   `createdAt` datetime DEFAULT NULL,
   `modifiedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_cmn_group_message_1` (`groupId`),
-  KEY `fk_cmn_group_message_2` (`memberId`),
-  CONSTRAINT `fk_cmn_group_message_1` FOREIGN KEY (`groupId`) REFERENCES `cmg_cmn_group` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `fk_cmn_group_message_2` FOREIGN KEY (`memberId`) REFERENCES `cmg_cmn_group_member` (`id`) ON DELETE CASCADE
+  KEY `fk_cmg_cmn_group_message_1` (`groupId`),
+  KEY `fk_cmg_cmn_group_message_2` (`memberId`),
+  CONSTRAINT `fk_cmg_cmn_group_message_1` FOREIGN KEY (`groupId`) REFERENCES `cmg_cmn_group` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_cmg_cmn_group_message_2` FOREIGN KEY (`memberId`) REFERENCES `cmg_cmn_group_member` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -244,17 +244,17 @@ DROP TABLE IF EXISTS `cmg_cmn_message`;
 CREATE TABLE `cmg_cmn_message` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `senderId` bigint(20) NOT NULL,
-  `recipientId` bigint(20) NOT NULL,
+  `recipientId` bigint(20) DEFAULT NULL,
   `type` smallint(6) NOT NULL,
   `content` mediumtext COLLATE utf8_unicode_ci,
   `createdAt` datetime DEFAULT NULL,
   `modifiedAt` datetime DEFAULT NULL,
   `mark` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
-  KEY `fk_cmn_message_1` (`senderId`),
-  KEY `fk_cmn_message_2` (`recipientId`),
-  CONSTRAINT `fk_cmn_message_1` FOREIGN KEY (`senderId`) REFERENCES `cmg_core_user` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `fk_cmn_message_2` FOREIGN KEY (`recipientId`) REFERENCES `cmg_core_user` (`id`) ON DELETE CASCADE
+  KEY `fk_cmg_cmn_message_1` (`senderId`),
+  KEY `fk_cmg_cmn_message_2` (`recipientId`),
+  CONSTRAINT `fk_cmg_cmn_message_1` FOREIGN KEY (`senderId`) REFERENCES `cmg_core_user` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_cmg_cmn_message_2` FOREIGN KEY (`recipientId`) REFERENCES `cmg_core_user` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1057,7 +1057,7 @@ CREATE TABLE `cmg_core_permission` (
 
 LOCK TABLES `cmg_core_permission` WRITE;
 /*!40000 ALTER TABLE `cmg_core_permission` DISABLE KEYS */;
-INSERT INTO `cmg_core_permission` VALUES (1,1,1,'admin','The permission admin is to distinguish between admin and site user. It is a must have permission for admins.','system',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(2,1,1,'user','The permission user is to distinguish between admin and site user. It is a must have permission for users.','system',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(3,1,1,'core','The permission core is to manage settings, drop downs, galleries and newsletters from admin.','system',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(4,1,1,'identity','The permission identity is to manage users from admin.','system',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(5,1,1,'identity-rbac','The permission identity-rbac is to manage roles and permissions from admin.','system',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1001,1,1,'cms','The permission cms is to manage templates, pages, menus, sidebars and widgets from admin.','system',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1551,1,1,'community','The permission community is to manage community module from admin.','system',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1552,1,1,'community-chat','The permission community-chat is to manage user private offline and online chat messages from admin.','system',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1553,1,1,'community-group','The permission community-group is to manage community groups, group members and messages from admin.','system',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1554,1,1,'group-create','The permission group-create is to create group from website.','group',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1555,1,1,'group-delete','The permission group-delete is to delete group from website.','group',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1556,1,1,'group-update-settings','The permission group-update-settings is to update group settings from website.','group',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1557,1,1,'group-update-profile','The permission group-update-profile is to update group profile from website.','group',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1558,1,1,'group-member-role','The permission group-member-role is to manage member role from website.','group',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1559,1,1,'group-member-approve','The permission group-member-approve is to approve group member from website.','group',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1560,1,1,'group-member-block','The permission group-member-block is to block group member from website.','group',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1561,1,1,'group-member-remove','The permission group-member-remove is to remove group member from website. It delete all member activity logs.','group',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1562,1,1,'group-status-message','The permission group-status-message is to update group status message from website.','group','','2014-10-11 14:22:54','2014-10-11 14:22:54'),(1563,1,1,'group-message-update','The permission group-message-update is to update group message from website. It allows to update message posted by all the group members.','group',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1564,1,1,'group-message-delete','The permission group-message-delete is to delete group message from website. It allows to delete message posted by all the group members.','group',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54');
+INSERT INTO `cmg_core_permission` VALUES (1,1,1,'admin','The permission admin is to distinguish between admin and site user. It is a must have permission for admins.','system',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(2,1,1,'user','The permission user is to distinguish between admin and site user. It is a must have permission for users.','system',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(3,1,1,'core','The permission core is to manage settings, drop downs, galleries and newsletters from admin.','system',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(4,1,1,'identity','The permission identity is to manage users from admin.','system',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(5,1,1,'identity-rbac','The permission identity-rbac is to manage roles and permissions from admin.','system',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1001,1,1,'cms','The permission cms is to manage templates, pages, menus, sidebars and widgets from admin.','system',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1551,1,1,'community','The permission community is to manage community module from admin.','system',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1552,1,1,'community-chat','The permission community-chat is to manage user private offline and online chat messages from admin.','system',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1553,1,1,'community-group','The permission community-group is to manage community groups, group members and messages from admin.','system',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1554,1,1,'group-create','The permission group-create is to create group from website.','community',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1555,1,1,'group-delete','The permission group-delete is to delete group from website.','community',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1556,1,1,'group-update-settings','The permission group-update-settings is to update group settings from website.','community',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1557,1,1,'group-update-profile','The permission group-update-profile is to update group profile from website.','community',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1558,1,1,'group-member-role','The permission group-member-role is to manage member role from website.','community',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1559,1,1,'group-member-approve','The permission group-member-approve is to approve group member from website.','community',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1560,1,1,'group-member-block','The permission group-member-block is to block group member from website.','community',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1561,1,1,'group-member-remove','The permission group-member-remove is to remove group member from website. It delete all member activity logs.','community',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1562,1,1,'group-status-message','The permission group-status-message is to update group status message from website.','community',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1563,1,1,'group-message-update','The permission group-message-update is to update group message from website. It allows to update message posted by all the group members.','community',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1564,1,1,'group-message-delete','The permission group-message-delete is to delete group message from website. It allows to delete message posted by all the group members.','community',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54');
 /*!40000 ALTER TABLE `cmg_core_permission` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1153,7 +1153,7 @@ CREATE TABLE `cmg_core_role` (
 
 LOCK TABLES `cmg_core_role` WRITE;
 /*!40000 ALTER TABLE `cmg_core_role` DISABLE KEYS */;
-INSERT INTO `cmg_core_role` VALUES (1,1,1,'Super Admin','The Super Admin have all the permisisons to perform operations on the admin site and website.','/dashboard','system',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(2,1,1,'Admin','The Admin have all the permisisons to perform operations on the admin site and website except RBAC module.','/dashboard','system',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(3,1,1,'User','The role User is limited to website users.','/home','system',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(4,1,1,'User Manager','The role User Manager is limited to manage site users from admin.','/dashboard','system',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1001,1,1,'CMS Manager','The role CMS Manager is limited to manage cms from admin.','/dashboard','system',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1551,1,1,'Chat Manager','The role Chat Manager is limited to manage private chat sessions from admin.','/','system',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1552,1,1,'Group Manager','The role Group Manager is limited to manage groups from admin.','/','system',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1553,1,1,'Group Super Admin','The role Super Admin is limited to manage groups from website. Admin has full rights to create, read, update or delete Group and to manage Group Settings. Group Admin can also manage Group Members and change their roles.','/','group',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1554,1,1,'Group Admin','The role Admin is limited to manage groups from website. Admin has full rights to update Group Profile. Group Admin can also manage Group Members, change their roles with less privileges than Admin.','/','group',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1555,1,1,'Group Moderator','The role Moderator is limited to manage groups from website. Moderators can update or delete Group Messages and change Group Status Message.','/','group',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1556,1,1,'Group Member','The role Member is limited to site users from website. Members can post on group, invite friends to join groups, share group on facebook wall, tweet about group on twitter.','/','group',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54');
+INSERT INTO `cmg_core_role` VALUES (1,1,1,'Super Admin','The Super Admin have all the permisisons to perform operations on the admin site and website.','/dashboard','system',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(2,1,1,'Admin','The Admin have all the permisisons to perform operations on the admin site and website except RBAC module.','/dashboard','system',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(3,1,1,'User','The role User is limited to website users.','/home','system',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(4,1,1,'User Manager','The role User Manager is limited to manage site users from admin.','/dashboard','system',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1001,1,1,'CMS Manager','The role CMS Manager is limited to manage cms from admin.','/dashboard','system',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1551,1,1,'Chat Manager','The role Chat Manager is limited to manage private chat sessions from admin.','/','system',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1552,1,1,'Group Manager','The role Group Manager is limited to manage groups from admin.','/','system',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1553,1,1,'Group Super Admin','The role Super Admin is limited to manage groups from website. Admin has full rights to create, read, update or delete Group and to manage Group Settings. Group Admin can also manage Group Members and change their roles.','/','community',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1554,1,1,'Group Admin','The role Admin is limited to manage groups from website. Admin has full rights to update Group Profile. Group Admin can also manage Group Members, change their roles with less privileges than Admin.','/','community',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1555,1,1,'Group Moderator','The role Moderator is limited to manage groups from website. Moderators can update or delete Group Messages and change Group Status Message.','/','community',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1556,1,1,'Group Member','The role Member is limited to site users from website. Members can post on group, invite friends to join groups, share group on facebook wall, tweet about group on twitter.','/','community',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54');
 /*!40000 ALTER TABLE `cmg_core_role` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1470,4 +1470,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-06-28 18:12:28
+-- Dump completed on 2015-07-01 19:47:54
