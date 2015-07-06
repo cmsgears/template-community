@@ -68,8 +68,8 @@
 		}
     ],
     "require": {
-        "yiisoft/yii2": "2.0.3",
-        "yiisoft/yii2-swiftmailer": "2.0.3",
+        "yiisoft/yii2": "2.0.4",
+        "yiisoft/yii2-swiftmailer": "2.0.4",
 		"cmsgears/module-core": "dev-dev",
 		"cmsgears/module-forms": "dev-dev",
 		"cmsgears/module-cms": "dev-dev",
