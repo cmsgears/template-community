@@ -47,8 +47,7 @@ return [
 	        	'<action:(login|logout|register|forgot-password|reset-password|activate-account|confirm-account)>' => 'cmgcore/site/<action>',
 	        	'<action:(contact|feedback)>' => 'cmgforms/site/<action>',
 	        	// CMS Pages
-	        	'<slug:[\w\-]+>' => 'cmgcms/site/index',
-	        	'/' => 'cmgcore/site/index'
+	        	'<slug:[\w\-]+>' => 'cmgcms/site/index'
 	        ]
 		],
         'cmgCore' => [
