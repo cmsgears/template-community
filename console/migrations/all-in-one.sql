@@ -1,8 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `cmgdemoblog` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci */;
-USE `cmgdemoblog`;
+CREATE DATABASE  IF NOT EXISTS `cmgdemocommunity` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci */;
+USE `cmgdemocommunity`;
 -- MySQL dump 10.13  Distrib 5.5.41, for debian-linux-gnu (x86_64)
 --
--- Host: localhost    Database: cmgdemoblog
+-- Host: localhost    Database: cmgdemocommunity
 -- ------------------------------------------------------
 -- Server version	5.5.41-0ubuntu0.14.04.1
 
@@ -16,6 +16,256 @@ USE `cmgdemoblog`;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `cmg_cmn_chat`
+--
+
+DROP TABLE IF EXISTS `cmg_cmn_chat`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `cmg_cmn_chat` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `sessionId` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `createdAt` datetime DEFAULT NULL,
+  `modifiedAt` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `cmg_cmn_chat`
+--
+
+LOCK TABLES `cmg_cmn_chat` WRITE;
+/*!40000 ALTER TABLE `cmg_cmn_chat` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cmg_cmn_chat` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cmg_cmn_chat_member`
+--
+
+DROP TABLE IF EXISTS `cmg_cmn_chat_member`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `cmg_cmn_chat_member` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `chatId` bigint(20) NOT NULL,
+  `userId` bigint(20) NOT NULL,
+  `createdAt` datetime DEFAULT NULL,
+  `modifiedAt` datetime DEFAULT NULL,
+  `syncedAt` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_cmg_cmn_chat_member_1` (`chatId`),
+  KEY `fk_cmg_cmn_chat_member_2` (`userId`),
+  CONSTRAINT `fk_cmg_cmn_chat_member_1` FOREIGN KEY (`chatId`) REFERENCES `cmg_cmn_chat` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_cmg_cmn_chat_member_2` FOREIGN KEY (`userId`) REFERENCES `cmg_core_user` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `cmg_cmn_chat_member`
+--
+
+LOCK TABLES `cmg_cmn_chat_member` WRITE;
+/*!40000 ALTER TABLE `cmg_cmn_chat_member` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cmg_cmn_chat_member` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cmg_cmn_chat_message`
+--
+
+DROP TABLE IF EXISTS `cmg_cmn_chat_message`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `cmg_cmn_chat_message` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `chatId` bigint(20) NOT NULL,
+  `messageId` bigint(20) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_cmg_cmn_chat_message_1` (`chatId`),
+  KEY `fk_cmg_cmn_chat_message_2` (`messageId`),
+  CONSTRAINT `fk_cmg_cmn_chat_message_1` FOREIGN KEY (`chatId`) REFERENCES `cmg_cmn_chat` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_cmg_cmn_chat_message_2` FOREIGN KEY (`messageId`) REFERENCES `cmg_cmn_chat_message` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `cmg_cmn_chat_message`
+--
+
+LOCK TABLES `cmg_cmn_chat_message` WRITE;
+/*!40000 ALTER TABLE `cmg_cmn_chat_message` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cmg_cmn_chat_message` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cmg_cmn_friend`
+--
+
+DROP TABLE IF EXISTS `cmg_cmn_friend`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `cmg_cmn_friend` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `userId` bigint(20) NOT NULL,
+  `friendId` bigint(20) NOT NULL,
+  `createdAt` datetime DEFAULT NULL,
+  `modifiedAt` datetime DEFAULT NULL,
+  `status` smallint(6) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `fk_cmg_cmn_friend_1` (`userId`),
+  KEY `fk_cmg_cmn_friend_2` (`friendId`),
+  CONSTRAINT `fk_cmg_cmn_friend_1` FOREIGN KEY (`userId`) REFERENCES `cmg_core_user` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_cmg_cmn_friend_2` FOREIGN KEY (`friendId`) REFERENCES `cmg_core_user` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `cmg_cmn_friend`
+--
+
+LOCK TABLES `cmg_cmn_friend` WRITE;
+/*!40000 ALTER TABLE `cmg_cmn_friend` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cmg_cmn_friend` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cmg_cmn_group`
+--
+
+DROP TABLE IF EXISTS `cmg_cmn_group`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `cmg_cmn_group` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `avatarId` bigint(20) DEFAULT NULL,
+  `createdBy` bigint(20) DEFAULT NULL,
+  `modifiedBy` bigint(20) DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `slug` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `status` smallint(6) DEFAULT '0',
+  `visibility` smallint(6) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_cmg_cmn_group_1` (`avatarId`),
+  KEY `fk_cmg_cmn_group_2` (`createdBy`),
+  KEY `fk_cmg_cmn_group_3` (`modifiedBy`),
+  CONSTRAINT `fk_cmg_cmn_group_1` FOREIGN KEY (`avatarId`) REFERENCES `cmg_core_file` (`id`),
+  CONSTRAINT `fk_cmg_cmn_group_2` FOREIGN KEY (`createdBy`) REFERENCES `cmg_core_user` (`id`),
+  CONSTRAINT `fk_cmg_cmn_group_3` FOREIGN KEY (`modifiedBy`) REFERENCES `cmg_core_user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `cmg_cmn_group`
+--
+
+LOCK TABLES `cmg_cmn_group` WRITE;
+/*!40000 ALTER TABLE `cmg_cmn_group` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cmg_cmn_group` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cmg_cmn_group_member`
+--
+
+DROP TABLE IF EXISTS `cmg_cmn_group_member`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `cmg_cmn_group_member` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `groupId` bigint(20) NOT NULL,
+  `userId` bigint(20) NOT NULL,
+  `roleId` bigint(20) DEFAULT NULL,
+  `status` smallint(6) NOT NULL DEFAULT '0',
+  `createdAt` datetime DEFAULT NULL,
+  `modifiedAt` datetime DEFAULT NULL,
+  `syncedAt` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_cmg_cmn_group_member_1` (`groupId`),
+  KEY `fk_cmg_cmn_group_member_2` (`userId`),
+  KEY `fk_cmg_cmn_group_member_3` (`roleId`),
+  CONSTRAINT `fk_cmg_cmn_group_member_1` FOREIGN KEY (`groupId`) REFERENCES `cmg_cmn_group` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_cmg_cmn_group_member_2` FOREIGN KEY (`userId`) REFERENCES `cmg_core_user` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_cmg_cmn_group_member_3` FOREIGN KEY (`roleId`) REFERENCES `cmg_core_role` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `cmg_cmn_group_member`
+--
+
+LOCK TABLES `cmg_cmn_group_member` WRITE;
+/*!40000 ALTER TABLE `cmg_cmn_group_member` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cmg_cmn_group_member` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cmg_cmn_group_message`
+--
+
+DROP TABLE IF EXISTS `cmg_cmn_group_message`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `cmg_cmn_group_message` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `groupId` bigint(20) NOT NULL,
+  `memberId` bigint(20) NOT NULL,
+  `visibility` smallint(6) NOT NULL DEFAULT '0',
+  `content` mediumtext COLLATE utf8_unicode_ci,
+  `createdAt` datetime DEFAULT NULL,
+  `modifiedAt` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_cmg_cmn_group_message_1` (`groupId`),
+  KEY `fk_cmg_cmn_group_message_2` (`memberId`),
+  CONSTRAINT `fk_cmg_cmn_group_message_1` FOREIGN KEY (`groupId`) REFERENCES `cmg_cmn_group` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_cmg_cmn_group_message_2` FOREIGN KEY (`memberId`) REFERENCES `cmg_cmn_group_member` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `cmg_cmn_group_message`
+--
+
+LOCK TABLES `cmg_cmn_group_message` WRITE;
+/*!40000 ALTER TABLE `cmg_cmn_group_message` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cmg_cmn_group_message` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cmg_cmn_message`
+--
+
+DROP TABLE IF EXISTS `cmg_cmn_message`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `cmg_cmn_message` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `senderId` bigint(20) NOT NULL,
+  `recipientId` bigint(20) DEFAULT NULL,
+  `visibility` smallint(6) NOT NULL,
+  `content` mediumtext COLLATE utf8_unicode_ci,
+  `createdAt` datetime DEFAULT NULL,
+  `modifiedAt` datetime DEFAULT NULL,
+  `mark` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `fk_cmg_cmn_message_1` (`senderId`),
+  KEY `fk_cmg_cmn_message_2` (`recipientId`),
+  CONSTRAINT `fk_cmg_cmn_message_1` FOREIGN KEY (`senderId`) REFERENCES `cmg_core_user` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_cmg_cmn_message_2` FOREIGN KEY (`recipientId`) REFERENCES `cmg_core_user` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `cmg_cmn_message`
+--
+
+LOCK TABLES `cmg_cmn_message` WRITE;
+/*!40000 ALTER TABLE `cmg_cmn_message` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cmg_cmn_message` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `cmg_cms_menu`
@@ -624,7 +874,7 @@ CREATE TABLE `cmg_core_model_meta` (
 
 LOCK TABLES `cmg_core_model_meta` WRITE;
 /*!40000 ALTER TABLE `cmg_core_model_meta` DISABLE KEYS */;
-INSERT INTO `cmg_core_model_meta` VALUES (1,1,'site','locale message','false','core','text',NULL),(2,1,'site','language','en-US','core','text',NULL),(3,1,'site','charset','UTF-8','core','text',NULL),(4,1,'site','site title','CMG Demo','core','text',NULL),(5,1,'site','site name','CMSGears','core','text',NULL),(6,1,'site','site url','http://demo.cmsgears.com/templates/basic/','core','text',NULL),(7,1,'site','smtp','false','email','text',NULL),(8,1,'site','smtp username','','email','text',NULL),(9,1,'site','smtp password','','email','',NULL),(10,1,'site','smtp host','','email','text',NULL),(11,1,'site','smtp port','587','email','text',NULL),(12,1,'site','debug','true','email','text',NULL),(13,1,'site','sender name','Admin','email','text',NULL),(14,1,'site','sender email','demoadmin@cmsgears.com','email','text',NULL),(15,1,'site','contact name','Contact Us','email','text',NULL),(16,1,'site','contact email','democontact@cmsgears.com','email','text',NULL),(17,1,'site','info name','Info','email','text',NULL),(18,1,'site','info email','demoinfo@cmsgears.com','email','text',NULL),(19,1,'site','theme','basic','frontend','text',NULL),(20,1,'site','theme version','1','frontend','text',NULL),(21,1,'site','admin url','http://demo.cmsgears.com/templates/basic/admin/','admin','text',NULL),(22,1,'site','theme','basic','admin','text',NULL),(23,1,'site','theme version','1','admin','text',NULL);
+INSERT INTO `cmg_core_model_meta` VALUES (1,1,'site','locale message','false','core','text',NULL),(2,1,'site','language','en-US','core','text',NULL),(3,1,'site','charset','UTF-8','core','text',NULL),(4,1,'site','site title','CMG Demo','core','text',NULL),(5,1,'site','site name','CMSGears','core','text',NULL),(6,1,'site','site url','http://demo.cmsgears.com/templates/community/','core','text',NULL),(7,1,'site','smtp','false','email','text',NULL),(8,1,'site','smtp username','','email','text',NULL),(9,1,'site','smtp password','','email','',NULL),(10,1,'site','smtp host','','email','text',NULL),(11,1,'site','smtp port','587','email','text',NULL),(12,1,'site','debug','true','email','text',NULL),(13,1,'site','sender name','Admin','email','text',NULL),(14,1,'site','sender email','demoadmin@cmsgears.com','email','text',NULL),(15,1,'site','contact name','Contact Us','email','text',NULL),(16,1,'site','contact email','democontact@cmsgears.com','email','text',NULL),(17,1,'site','info name','Info','email','text',NULL),(18,1,'site','info email','demoinfo@cmsgears.com','email','text',NULL),(19,1,'site','theme','basic','frontend','text',NULL),(20,1,'site','theme version','1','frontend','text',NULL),(21,1,'site','admin url','http://demo.cmsgears.com/templates/community/admin/','admin','text',NULL),(22,1,'site','theme','basic','admin','text',NULL),(23,1,'site','theme version','1','admin','text',NULL);
 /*!40000 ALTER TABLE `cmg_core_model_meta` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -798,7 +1048,7 @@ CREATE TABLE `cmg_core_permission` (
   KEY `fk_permission_2` (`modifiedBy`),
   CONSTRAINT `fk_permission_1` FOREIGN KEY (`createdBy`) REFERENCES `cmg_core_user` (`id`),
   CONSTRAINT `fk_permission_2` FOREIGN KEY (`modifiedBy`) REFERENCES `cmg_core_user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1002 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1565 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -807,7 +1057,7 @@ CREATE TABLE `cmg_core_permission` (
 
 LOCK TABLES `cmg_core_permission` WRITE;
 /*!40000 ALTER TABLE `cmg_core_permission` DISABLE KEYS */;
-INSERT INTO `cmg_core_permission` VALUES (1,1,1,'admin','The permission admin is to distinguish between admin and site user. It is a must have permission for admins.','system',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(2,1,1,'user','The permission user is to distinguish between admin and site user. It is a must have permission for users.','system',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(3,1,1,'core','The permission core is to manage settings, drop downs, galleries and newsletters from admin.','system',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(4,1,1,'identity','The permission identity is to manage users from admin.','system',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(5,1,1,'identity-rbac','The permission identity-rbac is to manage roles and permissions from admin.','system',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1001,1,1,'cms','The permission cms is to manage templates, pages, menus, sidebars and widgets from admin.','system',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54');
+INSERT INTO `cmg_core_permission` VALUES (1,1,1,'admin','The permission admin is to distinguish between admin and site user. It is a must have permission for admins.','system',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(2,1,1,'user','The permission user is to distinguish between admin and site user. It is a must have permission for users.','system',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(3,1,1,'core','The permission core is to manage settings, drop downs, galleries and newsletters from admin.','system',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(4,1,1,'identity','The permission identity is to manage users from admin.','system',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(5,1,1,'identity-rbac','The permission identity-rbac is to manage roles and permissions from admin.','system',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1001,1,1,'cms','The permission cms is to manage templates, pages, menus, sidebars and widgets from admin.','system',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1551,1,1,'community','The permission community is to manage community module from admin.','system',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1552,1,1,'community-chat','The permission community-chat is to manage user private offline and online chat messages from admin.','system',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1553,1,1,'community-group','The permission community-group is to manage community groups, group members and messages from admin.','system',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1554,1,1,'group-create','The permission group-create is to create group from website.','community',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1555,1,1,'group-delete','The permission group-delete is to delete group from website.','community',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1556,1,1,'group-update-settings','The permission group-update-settings is to update group settings from website.','community',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1557,1,1,'group-update-profile','The permission group-update-profile is to update group profile from website.','community',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1558,1,1,'group-member-role','The permission group-member-role is to manage member role from website.','community',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1559,1,1,'group-member-approve','The permission group-member-approve is to approve group member from website.','community',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1560,1,1,'group-member-block','The permission group-member-block is to block group member from website.','community',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1561,1,1,'group-member-remove','The permission group-member-remove is to remove group member from website. It delete all member activity logs.','community',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1562,1,1,'group-status-message','The permission group-status-message is to update group status message from website.','community',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1563,1,1,'group-message-update','The permission group-message-update is to update group message from website. It allows to update message posted by all the group members.','community',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1564,1,1,'group-message-delete','The permission group-message-delete is to delete group message from website. It allows to delete message posted by all the group members.','community',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54');
 /*!40000 ALTER TABLE `cmg_core_permission` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -894,7 +1144,7 @@ CREATE TABLE `cmg_core_role` (
   KEY `fk_role_2` (`modifiedBy`),
   CONSTRAINT `fk_role_1` FOREIGN KEY (`createdBy`) REFERENCES `cmg_core_user` (`id`),
   CONSTRAINT `fk_role_2` FOREIGN KEY (`modifiedBy`) REFERENCES `cmg_core_user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1002 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1557 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -903,7 +1153,7 @@ CREATE TABLE `cmg_core_role` (
 
 LOCK TABLES `cmg_core_role` WRITE;
 /*!40000 ALTER TABLE `cmg_core_role` DISABLE KEYS */;
-INSERT INTO `cmg_core_role` VALUES (1,1,1,'Super Admin','The Super Admin have all the permisisons to perform operations on the admin site and website.','/dashboard','system',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(2,1,1,'Admin','The Admin have all the permisisons to perform operations on the admin site and website except RBAC module.','/dashboard','system',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(3,1,1,'User','The role User is limited to website users.','/home','system',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(4,1,1,'User Manager','The role User Manager is limited to manage site users from admin.','/dashboard','system',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1001,1,1,'CMS Manager','The role CMS Manager is limited to manage cms from admin.','/dashboard','system',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54');
+INSERT INTO `cmg_core_role` VALUES (1,1,1,'Super Admin','The Super Admin have all the permisisons to perform operations on the admin site and website.','/dashboard','system',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(2,1,1,'Admin','The Admin have all the permisisons to perform operations on the admin site and website except RBAC module.','/dashboard','system',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(3,1,1,'User','The role User is limited to website users.','/home','system',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(4,1,1,'User Manager','The role User Manager is limited to manage site users from admin.','/dashboard','system',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1001,1,1,'CMS Manager','The role CMS Manager is limited to manage cms from admin.','/dashboard','system',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1551,1,1,'Chat Manager','The role Chat Manager is limited to manage private chat sessions from admin.','/','system',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1552,1,1,'Group Manager','The role Group Manager is limited to manage groups from admin.','/','system',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1553,1,1,'Group Super Admin','The role Super Admin is limited to manage groups from website. Admin has full rights to create, read, update or delete Group and to manage Group Settings. Group Admin can also manage Group Members and change their roles.','/','community',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1554,1,1,'Group Admin','The role Admin is limited to manage groups from website. Admin has full rights to update Group Profile. Group Admin can also manage Group Members, change their roles with less privileges than Admin.','/','community',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1555,1,1,'Group Moderator','The role Moderator is limited to manage groups from website. Moderators can update or delete Group Messages and change Group Status Message.','/','community',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54'),(1556,1,1,'Group Member','The role Member is limited to site users from website. Members can post on group, invite friends to join groups, share group on facebook wall, tweet about group on twitter.','/','community',NULL,'2014-10-11 14:22:54','2014-10-11 14:22:54');
 /*!40000 ALTER TABLE `cmg_core_role` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -931,7 +1181,7 @@ CREATE TABLE `cmg_core_role_permission` (
 
 LOCK TABLES `cmg_core_role_permission` WRITE;
 /*!40000 ALTER TABLE `cmg_core_role_permission` DISABLE KEYS */;
-INSERT INTO `cmg_core_role_permission` VALUES (1,1),(1,2),(1,3),(1,4),(1,5),(1,1001),(2,1),(2,2),(2,3),(2,1001),(3,2),(4,1),(4,2),(4,4),(1001,1001);
+INSERT INTO `cmg_core_role_permission` VALUES (1,1),(1,2),(1,3),(1,4),(1,5),(1,1001),(1,1551),(1,1552),(1,1553),(2,1),(2,2),(2,3),(2,1001),(2,1551),(2,1552),(2,1553),(3,2),(4,1),(4,2),(4,4),(1001,1001),(1551,1),(1551,2),(1551,1551),(1551,1552),(1552,1),(1552,2),(1552,1551),(1552,1553),(1553,1554),(1553,1555),(1553,1556),(1553,1557),(1553,1558),(1553,1559),(1553,1560),(1553,1561),(1553,1562),(1553,1563),(1553,1564),(1554,1556),(1554,1557),(1554,1558),(1554,1559),(1554,1560),(1554,1561),(1554,1562),(1554,1563),(1554,1564),(1555,1563),(1555,1564);
 /*!40000 ALTER TABLE `cmg_core_role_permission` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1220,4 +1470,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-06-28 15:41:41
+-- Dump completed on 2015-07-01 19:47:54

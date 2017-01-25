@@ -13,7 +13,6 @@ return [
         ],
         'urlManager' => [
             'enablePrettyUrl' => true,
-			'enableStrictParsing' => true,
             'showScriptName' => false
 		],
         'request' => [
@@ -66,7 +65,7 @@ return [
         ],
         'fileManager' => [
         	'class' => 'cmsgears\files\components\FileManager',
-        	'uploadUrl' => 'http://localhost/cmgdemoblog/uploads/'
+        	'uploadUrl' => 'http://localhost/cmgdemocommunity/uploads/'
         ]
     ]
 ];

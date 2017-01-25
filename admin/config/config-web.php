@@ -36,8 +36,7 @@ return [
 				// regular request rules
 	        	'<module:\w+>/<controller:\w+>/<action:[\w\-]+>' => '<module>/<controller>/<action>',
 	        	'<controller:\w+>/<action:[\w\-]+>' => 'cmgcore/site/<action>',
-	        	'<action:(login|logout|dashboard)>' => 'cmgcore/site/<action>',
-	        	'/' => 'cmgcore/site/index'
+	        	'<action:(login|logout|dashboard)>' => 'cmgcore/site/<action>'
 	        ]
 		],
         'cmgCore' => [
