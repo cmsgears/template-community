@@ -17,14 +17,46 @@ $root 		= str_replace( '\\', '/', __DIR__ );
 $envs 		= require( "$root/environments/index.php" );
 $envNames 	= array_keys( $envs );
 
+$envName	= null;
+
 echo "Yii Application Initialization Tool\n\n";
 
-// Set the required environemnt
+if( count( $argv ) > 1 ) {
 
-$envName = "Development";
-//$envName 	= "Production";
+	$envName = $argv[ 1 ];
+}
 
-$env 		= $envs[$envName];
+if( !isset( $envName ) || !in_array( $envName, [ 'dev', 'prod' ] ) ) {
+
+	echo "Enter your development environment among dev or prod:";
+
+	// Set the required environemnt
+	$envName 	= trim( fgets( STDIN ) );
+}
+
+switch( $envName ) {
+
+	case 'dev': {
+
+		$envName = "Development";
+
+		break;
+	}
+	case 'prod': {
+
+		$envName 	= "Production";
+
+		break;
+	}
+	default: {
+
+		echo "Wrong environemnt choosen.";
+
+		die();
+	}
+}
+
+$env 		= $envs[ $envName ];
 
 echo "\n  Start initialization ...\n\n";
 
@@ -69,7 +101,7 @@ function getFileList( $root, $basePath = '' ) {
         if ( is_dir( $fullPath ) ) {
 
             $files = array_merge( $files, getFileList( $fullPath, $relativePath ) );
-        } 
+        }
         else {
             $files[] = $relativePath;
         }
@@ -113,7 +145,7 @@ function copyFile( $root, $source, $target ) {
 }
 
 function setWritable( $root, $paths ) {
-	
+
     foreach( $paths as $writable ) {
 
         echo "      chmod 0777 $writable\n";
