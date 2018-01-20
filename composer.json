@@ -1,99 +1,73 @@
 {
 	"name": "cmsgears/template-community",
 	"description": "The community template for community module having default theme set to community.",
-	"homepage": "http://www.cmsgears.org", 
+	"homepage": "https://www.cmsgears.org",
 	"type": "project",
 	"keywords": [ "yii2", "cmsgears", "template", "community" ],
-	"license": "GPLv3",
+	"license": "GPL-3.0-or-later",
 	"support": {
-        "source": "http://www.cmsgears.com/templates/community/downloads",
-		"forum": "http://forum.cmsgears.org/",
-		"resources": "http://resources.cmsgears.org/",
-		"issues": "https://www.amazingdesk.com/cmsgears/issues/",
-		"blog": "http://cmsgears.tutorials24x7.com/"
+		"forum": "https://forum.cmsgears.com"
 	},
 	"minimum-stability": "stable",
-    "repositories": [
+	"repositories": [
 		{
-			"type": "vcs",
-			"url": "https://git.vcdevhub.com/cmsgears/module-core.git"
-		},
-		{
-			"type": "vcs",
-			"url": "https://git.vcdevhub.com/cmsgears/module-forms.git"
-		},
-		{
-			"type": "vcs",
-			"url": "https://git.vcdevhub.com/cmsgears/module-cms.git"
-		},
-		{
-			"type": "vcs",
-			"url": "https://git.vcdevhub.com/cmsgears/module-community.git"
-		},
-		{
-			"type": "vcs",
-			"url": "https://git.vcdevhub.com/cmsgears/plugin-file-manager.git"
-		},
-		{
-			"type": "vcs",
-			"url": "https://git.vcdevhub.com/cmsgears/widget-cleditor.git"
-		},
-		{
-			"type": "vcs",
-			"url": "https://git.vcdevhub.com/cmsgears/widget-nav.git"
-		},
-		{
-			"type": "vcs",
-			"url": "https://git.vcdevhub.com/cmsgears/widget-login.git"
-		},
-		{
-			"type": "vcs",
-			"url": "https://git.vcdevhub.com/cmsgears/widget-gallery.git"
-		},
-		{
-			"type": "vcs",
-			"url": "https://git.vcdevhub.com/cmsgears/widget-newsletter.git"
-		},
-		{
-			"type": "vcs",
-			"url": "https://git.vcdevhub.com/cmsgears/widget-tag.git"
-		},
-		{
-			"type": "vcs",
-			"url": "https://git.vcdevhub.com/cmsgears/widget-social-share.git"
-		},
-		{
-			"type": "vcs",
-			"url": "https://git.vcdevhub.com/cmsgears/widget-blog.git"
+			"type": "composer",
+			"url": "https://asset-packagist.org"
 		}
-    ],
-    "require": {
-        "yiisoft/yii2": "2.0.4",
-        "yiisoft/yii2-swiftmailer": "2.0.4",
-		"cmsgears/module-core": "dev-dev",
-		"cmsgears/module-forms": "dev-dev",
-		"cmsgears/module-cms": "dev-dev",
-		"cmsgears/module-community": "dev-dev",
-		"cmsgears/plugin-file-manager": "dev-dev",
-		"cmsgears/widget-cleditor": "dev-dev",
-		"cmsgears/widget-nav": "dev-dev",
-		"cmsgears/widget-login": "dev-dev",
-		"cmsgears/widget-gallery": "dev-dev",
-		"cmsgears/widget-newsletter": "dev-dev",
-		"cmsgears/widget-tag": "dev-dev",
-		"cmsgears/widget-social-share": "dev-dev",
-		"cmsgears/widget-blog": "dev-dev"
-    },
-    "require-dev": {
-        "yiisoft/yii2-codeception": "*",
-        "yiisoft/yii2-debug": "*",
-        "yiisoft/yii2-gii": "*",
-        "yiisoft/yii2-faker": "*"
-    },
-    "extra": {
-        "asset-installer-paths": {
-            "npm-asset-library": "vendor/npm",
-            "bower-asset-library": "vendor/bower"
-        }
-    }
+	],
+	"require": {
+		"php": ">=7.0.0",
+		"yiisoft/yii2": "2.0.13",
+		"yiisoft/yii2-swiftmailer": "2.1.*",
+		"yiisoft/yii2-twig" : "~2.2.0",
+		"cmsgears/module-core": "dev-1.0.0-alpha",
+		"cmsgears/module-cms": "dev-1.0.0-alpha",
+		"cmsgears/module-forms": "dev-1.0.0-alpha",
+		"cmsgears/module-sns-login": "dev-1.0.0-alpha",
+		"cmsgears/module-newsletter": "dev-1.0.0-alpha",
+		"cmsgears/module-notify": "dev-1.0.0-alpha",
+		"cmsgears/module-payment": "dev-1.0.0-alpha",
+		"cmsgears/module-cart": "dev-1.0.0-alpha",
+		"cmsgears/module-community": "dev-1.0.0-alpha",
+		"cmsgears/plugin-file-manager": "dev-1.0.0-alpha",
+		"cmsgears/plugin-social-meta": "dev-1.0.0-alpha",
+		"cmsgears/plugin-icon-picker": "dev-1.0.0-alpha",
+		"cmsgears/widget-text": "dev-1.0.0-alpha",
+		"cmsgears/widget-cleditor": "dev-1.0.0-alpha",
+		"cmsgears/widget-comment": "dev-1.0.0-alpha",
+		"cmsgears/widget-block": "dev-1.0.0-alpha",
+		"cmsgears/widget-block-dynamic": "dev-1.0.0-alpha",
+		"cmsgears/widget-nav": "dev-1.0.0-alpha",
+		"cmsgears/widget-nav-dynamic": "dev-1.0.0-alpha",
+		"cmsgears/widget-login": "dev-1.0.0-alpha",
+		"cmsgears/widget-gallery": "dev-1.0.0-alpha",
+		"cmsgears/widget-newsletter": "dev-1.0.0-alpha",
+		"cmsgears/widget-form": "dev-1.0.0-alpha",
+		"cmsgears/widget-form-ajax": "dev-1.0.0-alpha",
+		"cmsgears/widget-tag": "dev-1.0.0-alpha",
+		"cmsgears/widget-category": "dev-1.0.0-alpha",
+		"cmsgears/widget-blog": "dev-1.0.0-alpha",
+		"cmsgears/widget-social-share": "dev-1.0.0-alpha",
+		"cmsgears/widget-social-counts": "dev-1.0.0-alpha",
+		"cmsgears/widget-popup": "dev-1.0.0-alpha",
+		"cmsgears/widget-grid": "dev-1.0.0-alpha",
+		"foxslider/cmg-plugin": "dev-1.0.0-alpha",
+		"bower-asset/jquery-ui": "1.12.*",
+		"bower-asset/handlebars": "4.0.*",
+		"bower-asset/imagesloaded": "4.1.*",
+		"bower-asset/malihu-custom-scrollbar-plugin": "3.1.*",
+		"bower-asset/fontawesome": "4.7.*",
+		"bower-asset/chart.js": "2.7.*",
+		"bower-asset/moment": "2.18.*",
+		"bower-asset/cmt-ui": "dev-1.0.0-alpha",
+		"bower-asset/cmt-js": "dev-1.0.0-alpha",
+		"bower-asset/cmt-iconlib": "dev-1.0.0-alpha"
+	},
+	"require-dev": {
+		"codeception/base": "^2.2.3",
+		"codeception/verify": "~0.3.1",
+		"yiisoft/yii2-debug": "2.0.*",
+		"yiisoft/yii2-gii": "2.0.*",
+		"yiisoft/yii2-faker": "2.0.*"
+	}
 }
