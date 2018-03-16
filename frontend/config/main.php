@@ -12,6 +12,7 @@ return [
 	'basePath' => dirname( __DIR__ ),
 	'controllerNamespace' => 'frontend\controllers',
 	'defaultRoute' => 'core/site/index',
+	'catchAll' => null,
 	'bootstrap' => [
 		'log',
 		'core', 'cms', 'forms', 'snsConnect', 'newsletter', 'notify', 'community',
