@@ -130,9 +130,9 @@ return [
 		'notifyMailer' => [
 			'class' => 'cmsgears\notify\common\components\Mailer'
 		],
-		// CMG Modules - Listing
+		// CMG Modules - Community
 		'community' => [
-			'class' => 'cmsgears\community\common\components\Listing'
+			'class' => 'cmsgears\community\common\components\Community'
 		],
 		'communityMessage' => [
 			'class' => 'cmsgears\community\common\components\MessageSource'
