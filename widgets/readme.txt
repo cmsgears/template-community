@@ -1,1 +1,0 @@
-The templates directory to store templates for widgets, pages and posts.
